@@ -1,59 +1,65 @@
 source "https://rubygems.org"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+########
+# Core #
+########
+
+# The star of the show, our web application framework.
 gem "rails", "~> 8.0.2"
-# The modern asset pipeline for Rails [https://github.com/rails/propshaft]
-gem "propshaft"
-# Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
-# Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+
+# PostgreSQL integration.
+gem "pg"
+# Webserver that hosts our application and handles requests.
+gem "puma"
+
+##################
+# Asset Pipeline #
+##################
+
+# Use import maps for our application's javascript and CSS.
 gem "importmap-rails"
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+# Rails' main asset pipeline.
+gem "propshaft"
+# Javascript library that provides easy, robust, and reusable controllers.
 gem "stimulus-rails"
-# Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
+# Use TailwindCSS for our page styling.
 gem "tailwindcss-rails"
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
+# Javascript library that speeds up user navigation of the application.
+gem "turbo-rails"
 
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+###########
+# Utility #
+###########
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
-
-# Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-gem "solid_cache"
-gem "solid_queue"
-gem "solid_cable"
-
-# Reduces boot times through caching; required in config/boot.rb
+# Helps boot our application faster.
 gem "bootsnap", require: false
-
-# Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
-gem "kamal", require: false
-
-# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", require: false
-
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing"
+# Use JBuilder to easily and cleanly build out JSON responses.
+gem "jbuilder"
+# Provides a database-backed system for ActionCable.
+gem "solid_cable"
+# Provides a database-backed queue system that can survive restarts.
+gem "solid_cache"
+# Provides a database-backed job system that can enqueue jobs.
+gem "solid_queue"
+# Used as an HTTP/2 proxy.
+gem "thruster", require: false
+# Provides timezone information.
+gem "tzinfo-data"
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
-
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-rails-omakase", require: false
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
+  # Ruby style linter
+  gem "rubocop-rails", require: false
 end
 
 group :development do
+  # Reload our pages live as we edit them.
+  gem "hotwire-livereload"
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end
