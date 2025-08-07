@@ -16,6 +16,8 @@ gem "puma"
 # Asset Pipeline #
 ##################
 
+# Use HAML to build our view files.
+gem "haml-rails"
 # Use import maps for our application's javascript and CSS.
 gem "importmap-rails"
 # Rails' main asset pipeline.
