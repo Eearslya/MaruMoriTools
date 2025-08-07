@@ -98,36 +98,39 @@ export default class extends Controller {
 
     let xOff = 0.5;
     let yOff = 0.5;
-    for (var i = 0; i < this.kanjiArray.length; ++i) {
-      const character = this.kanjiArray[i];
-      const x = xOff * (fontSize + xPad);
-      const y = yOff * (fontSize + yPad);
-
-      const level = this.kanjiProgress[character] || 0;
-      context.fillStyle = this.levelColors[level];
-      context.fillText(character, x, y);
-
+    const Advance = function() {
       if (yOff >= rows - 1) {
         xOff += 1;
         yOff = 0.5;
       } else {
         yOff += 1;
       }
+    };
+    const Draw = function(text) {
+      const x = xOff * (fontSize + xPad);
+      const y = yOff * (fontSize + yPad);
+      context.fillText(text, x, y);
+      Advance();
+    };
+
+    for (var i = 0; i < this.kanjiArray.length; ++i) {
+      const character = this.kanjiArray[i];
+      const level = this.kanjiProgress[character] || 0;
+      context.fillStyle = this.levelColors[level];
+      Draw(character);
     }
 
     const gap = gridSize - this.kanjiArray.length - 4;
-    yOff += gap + 1;
+    for (var i = 0; i <= gap; ++i) { Advance(); }
 
     const today = new Date;
     const day = String(today.getDate()).padStart(2, "0");
     const month = String(today.getMonth() + 1).padStart(2, "0");
     const year = String(today.getFullYear()).substring(2);
     context.font = "900 " + (fontSize - fontPadding - 8) + "px sans-serif";
-    context.fillText(day, xOff * (fontSize + xPad), yOff * (fontSize + yPad));
-    yOff += 1;
-    context.fillText(month, xOff * (fontSize + xPad), yOff * (fontSize + yPad));
-    yOff += 1;
-    context.fillText(year, xOff * (fontSize + xPad), yOff * (fontSize + yPad));
+    Draw(day);
+    Draw(month);
+    Draw(year);
 
     this.saveTarget.href = this.canvasTarget.toDataURL();
   }
