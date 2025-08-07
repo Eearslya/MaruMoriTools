@@ -44,12 +44,10 @@ export default class extends Controller {
   }
 
   fontSize() {
-    const t = this.kanjiArray.length;
-    const e = this.width;
-    const n = this.height;
-    const r = e / n;
-    const i = Math.ceil(Math.sqrt(t * r));
-    return Math.floor(i / r) * i < t ? n / Math.ceil(i / r) : e / i;
+    const count = this.kanjiArray.length;
+    const aspect = this.width / this.height;
+    const i = Math.ceil(Math.sqrt(count * aspect));
+    return Math.floor(i / aspect) * i < count ? this.height / Math.ceil(i / aspect) : this.width / i;
   }
 
   loadProgress() {
