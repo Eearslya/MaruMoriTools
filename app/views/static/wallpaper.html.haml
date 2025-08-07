@@ -1,62 +1,39 @@
 .card.card-sm.flex-1.bg-base-200.border-2.border-gray-600.shadow-md
-  .card-title.self-center.text-3xl.py-2 MaruMori Kanji Wallpaper Generator
+  .card-title.self-center.text-3xl.py-2= t("static.wallpaper.title")
   .card-body.flex.flex-col.items-center{data: { controller: "wallpaper" }}
     .flex.flex-row.gap-4
       %fieldset.fieldset.border-gray-600.rounded-box.w-xs.border.p-4.self-start
-        %legend.fieldset-legend API Key
-        %input.input{type: "text", placeholder: "Your API key...", data: { action: "input->wallpaper#updateApiKey", wallpaper_target: "apiKey" }}
+        %legend.fieldset-legend= t("static.wallpaper.api_key.title")
+        %input.input{type: "text", placeholder: t("static.wallpaper.api_key.placeholder"), data: { action: "input->wallpaper#updateApiKey", wallpaper_target: "apiKey" }}
         %p.label= "You can find your MaruMori API key from #{link_to "here", "https://marumori.io/settings", class: "text-blue-500", target: "_blank"}".html_safe
-        %button.btn.btn-outline.btn-info.btn-disabled{data: { action: "wallpaper#loadProgress", loading_text: "Loading...", wallpaper_target: "load" }} Load my Kanji progress
+        %button.btn.btn-outline.btn-info.btn-disabled{data: { action: "wallpaper#loadProgress", loading_text: t("static.wallpaper.api_key.loading"), wallpaper_target: "load" }}= t("static.wallpaper.api_key.load")
       %fieldset.fieldset.border-gray-600.rounded-box.w-md.border.p-4
-        %legend.fieldset-legend Settings
+        %legend.fieldset-legend= t("static.wallpaper.settings.title")
         %label.input
-          %span.label Width
-          %input{type: "number", data: { action: "input->wallpaper#update", wallpaper_target: "width" }, value: 256}
+          %span.label= t("static.wallpaper.settings.width")
+          %input{type: "number", data: { action: "input->wallpaper#update", wallpaper_target: "width" }}
         %label.input
-          %span.label Height
-          %input{type: "number", data: { action: "input->wallpaper#update", wallpaper_target: "height" }, value: 256}
+          %span.label= t("static.wallpaper.settings.height")
+          %input{type: "number", data: { action: "input->wallpaper#update", wallpaper_target: "height" }}
         %label.input
-          %span.label Kanji Spacing
-          %input{type: "number", data: { action: "input->wallpaper#update", wallpaper_target: "spacing" }, value: 3}
+          %span.label= t("static.wallpaper.settings.spacing")
+          %input{type: "number", data: { action: "input->wallpaper#update", wallpaper_target: "spacing" }}
         .collapse.border.border-gray-600
           %input{type: "checkbox"}/
-          .collapse-title.text-lg.font-semibold Colors...
+          .collapse-title.text-lg.font-semibold= t("static.wallpaper.settings.colors.title")
           .collapse-content
             %label.input
-              %span.label{class: "w-[20ch]"} Background
-              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "background" }, value: "#000000"}
+              %span.label{class: "w-[20ch]"}= t("static.wallpaper.settings.colors.background")
+              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "background" }}
             %label.input
-              %span.label{class: "w-[20ch]"} Unknown
-              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }, value: "#555555"}
-            %label.input
-              %span.label{class: "w-[20ch]"} Level 1
-              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }, value: "#ed7989"}
-            %label.input
-              %span.label{class: "w-[20ch]"} Level 2
-              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }, value: "#ed7989"}
-            %label.input
-              %span.label{class: "w-[20ch]"} Level 3
-              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }, value: "#ed7989"}
-            %label.input
-              %span.label{class: "w-[20ch]"} Level 4
-              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }, value: "#ed7989"}
-            %label.input
-              %span.label{class: "w-[20ch]"} Level 5
-              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }, value: "#fdc281"}
-            %label.input
-              %span.label{class: "w-[20ch]"} Level 6
-              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }, value: "#fdc281"}
-            %label.input
-              %span.label{class: "w-[20ch]"} Level 7
-              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }, value: "#73ca9d"}
-            %label.input
-              %span.label{class: "w-[20ch]"} Level 8
-              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }, value: "#66a9e8"}
-            %label.input
-              %span.label{class: "w-[20ch]"} Level 9
-              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }, value: "#b0a5f2"}
+              %span.label{class: "w-[20ch]"}= t("static.wallpaper.settings.colors.unknown")
+              %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }}
+            - 9.times do |i|
+              %label.input
+                %span.label{class: "w-[20ch]"}= t("static.wallpaper.settings.colors.level", level: i + 1)
+                %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }}
             
 
     .relative.p-4
       %canvas{class: "max-w-full xl:max-w-4xl", width: 256, height: 256, data: { wallpaper_target: "canvas" }}
-    %a.btn.btn-outline.btn-success{data: { wallpaper_target: "save" }, download: true} Save Wallpaper
+    %a.btn.btn-outline.btn-success{data: { wallpaper_target: "save" }, download: true}= t("static.wallpaper.save")

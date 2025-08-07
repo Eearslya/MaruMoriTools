@@ -7,7 +7,7 @@
     %meta{name: "mobile-web-app-capable", content: "yes"}/
     = csrf_meta_tags
     = csp_meta_tag
-    %title= content_for(:title) || "MaruMori Tools"
+    %title= content_for(:title) || t("app_name")
     = yield :head
     %link{rel: "icon", href: "/icon.png", type: "image/png"}/
     %link{rel: "icon", href: "/icon.svg", type: "image/svg+xml"}/
