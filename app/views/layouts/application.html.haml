@@ -12,8 +12,10 @@
     %link{rel: "icon", href: "/icon.png", type: "image/png"}/
     %link{rel: "icon", href: "/icon.svg", type: "image/svg+xml"}/
     %link{rel: "apple-touch-icon", href: "/icon.png", type: "image/png"}/
-    = stylesheet_link_tag :app, "data-turbo-track": "reload"
+    = stylesheet_link_tag "tailwind", "data-turbo-track": Rails.env.production? ? "reload" : ""
     = javascript_importmap_tags
-  %body
-    %main.container.mx-auto.mt-28.px-5.flex
+  %body.h-full.max-h-screen.w-full.max-w-screen.bg-base-100.flex.flex-col
+    .toast.toast-top.toast-center.z-100#toasts
+    = render "layouts/navbar"
+    %main.flex.w-full.p-4.self-center{class: "xl:w-[80rem]"}
       = yield
