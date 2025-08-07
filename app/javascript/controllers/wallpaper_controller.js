@@ -94,7 +94,6 @@ export default class extends Controller {
     context.font = "900 " + (fontSize - fontPadding) + "px sans-serif";
     context.textBaseline = "middle";
     context.textAlign = "center";
-    context.fillStyle = "#555";
 
     let xOff = 0.5;
     let yOff = 0.5;
@@ -127,6 +126,7 @@ export default class extends Controller {
     const day = String(today.getDate()).padStart(2, "0");
     const month = String(today.getMonth() + 1).padStart(2, "0");
     const year = String(today.getFullYear()).substring(2);
+    context.fillStyle = this.levelColors[0];
     context.font = "900 " + (fontSize - fontPadding - 8) + "px sans-serif";
     Draw(day);
     Draw(month);
