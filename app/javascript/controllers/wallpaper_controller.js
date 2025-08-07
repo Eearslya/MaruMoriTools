@@ -120,7 +120,7 @@ export default class extends Controller {
   setProgress(data) {
     this.kanjiProgress = [];
     for (var i = 0; i < data.items.length; ++i) {
-      this.kanjiProgress[data.items[i].item] = data.items[i].level;
+      this.kanjiProgress[data.items[i].item] = Math.min(Math.max(data.items[i].level, 0), 9);
     }
     this.render();
   }
