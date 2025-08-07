@@ -44,7 +44,7 @@ export default class extends Controller {
   }
 
   fontSize() {
-    const count = this.kanjiArray.length;
+    const count = this.kanjiArray.length + 4;
     const aspect = this.width / this.height;
     const i = Math.ceil(Math.sqrt(count * aspect));
     return Math.floor(i / aspect) * i < count ? this.height / Math.ceil(i / aspect) : this.width / i;
@@ -88,6 +88,7 @@ export default class extends Controller {
     const fontPadding = this.spacing;
     const rows = Math.floor(this.height / (fontSize - 1));
     const columns = Math.ceil(this.kanjiArray.length / rows);
+    const gridSize = rows * columns;
     const xPad = (this.width - fontSize * columns) / columns;
     const yPad = (this.height - fontSize * rows) / (rows + 1);
     context.font = "900 " + (fontSize - fontPadding) + "px sans-serif";
@@ -113,6 +114,20 @@ export default class extends Controller {
         yOff += 1;
       }
     }
+
+    const gap = gridSize - this.kanjiArray.length - 4;
+    yOff += gap + 1;
+
+    const today = new Date;
+    const day = String(today.getDate()).padStart(2, "0");
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const year = String(today.getFullYear()).substring(2);
+    context.font = "900 " + (fontSize - fontPadding - 8) + "px sans-serif";
+    context.fillText(day, xOff * (fontSize + xPad), yOff * (fontSize + yPad));
+    yOff += 1;
+    context.fillText(month, xOff * (fontSize + xPad), yOff * (fontSize + yPad));
+    yOff += 1;
+    context.fillText(year, xOff * (fontSize + xPad), yOff * (fontSize + yPad));
 
     this.saveTarget.href = this.canvasTarget.toDataURL();
   }
