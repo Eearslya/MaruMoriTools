@@ -1,13 +1,13 @@
 .card.card-sm.flex-1.bg-base-200.border-2.border-gray-600.shadow-md
   .card-title.self-center.text-3xl.py-2= t("static.wallpaper.title")
   .card-body.flex.flex-col.items-center{data: { controller: "wallpaper" }}
-    .flex.flex-row.gap-4
+    .flex.flex-row.flex-wrap.gap-4
       %fieldset.fieldset.border-gray-600.rounded-box.w-xs.border.p-4.self-start
         %legend.fieldset-legend= t("static.wallpaper.api_key.title")
         %input.input{type: "text", placeholder: t("static.wallpaper.api_key.placeholder"), data: { action: "input->wallpaper#updateApiKey", wallpaper_target: "apiKey" }}
         %p.label= "You can find your MaruMori API key from #{link_to "here", "https://marumori.io/settings", class: "text-blue-500", target: "_blank"}".html_safe
         %button.btn.btn-outline.btn-info.btn-disabled{data: { action: "wallpaper#loadProgress", loading_text: t("static.wallpaper.api_key.loading"), wallpaper_target: "load" }}= t("static.wallpaper.api_key.load")
-      %fieldset.fieldset.border-gray-600.rounded-box.w-md.border.p-4
+      %fieldset.fieldset.border-gray-600.rounded-box.w-xs.border.p-4
         %legend.fieldset-legend= t("static.wallpaper.settings.title")
         %label.input
           %span.label= t("static.wallpaper.settings.width")
@@ -23,14 +23,14 @@
           .collapse-title.text-lg.font-semibold= t("static.wallpaper.settings.colors.title")
           .collapse-content
             %label.input
-              %span.label{class: "w-[20ch]"}= t("static.wallpaper.settings.colors.background")
+              %span.label{class: "w-[24ch]"}= t("static.wallpaper.settings.colors.background")
               %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "background" }}
             %label.input
-              %span.label{class: "w-[20ch]"}= t("static.wallpaper.settings.colors.unknown")
+              %span.label{class: "w-[24ch]"}= t("static.wallpaper.settings.colors.unknown")
               %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }}
             - 9.times do |i|
               %label.input
-                %span.label{class: "w-[20ch]"}= t("static.wallpaper.settings.colors.level", level: i + 1)
+                %span.label{class: "w-[24ch]"}= t("static.wallpaper.settings.colors.level", level: i + 1)
                 %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }}
             
 

@@ -24,8 +24,9 @@ export default class extends Controller {
   width = 256;
 
   connect() {
-    this.width = window.screen.width;
-    this.height = window.screen.height;
+    const dpr = window.devicePixelRatio;
+    this.width = Math.floor(window.screen.width * dpr);
+    this.height = Math.floor(window.screen.height * dpr);
     this.canvasTarget.width = this.width;
     this.canvasTarget.height = this.height;
 
