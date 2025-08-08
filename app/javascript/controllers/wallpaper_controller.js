@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["canvas", "save", "apiKey", "load", "width", "height", "spacing", "levelColor", "background"];
+  static targets = ["canvas", "save", "apiKey", "load", "width", "height", "spacing", "levelColor", "background", "fillImage"];
 
   backgroundColor = "#000000";
   height = 256;
@@ -119,8 +119,15 @@ export default class extends Controller {
       Draw(character);
     }
 
+    const paths = this.fillImageTarget.querySelectorAll("path");
+    paths.forEach((p) => p.fill = this.levelColors[0]);
     const gap = gridSize - this.kanjiArray.length - 4;
-    for (var i = 0; i <= gap; ++i) { Advance(); }
+    for (var i = 0; i <= gap; ++i) {
+      const x = (xOff - 0.5) * (fontSize + xPad);
+      const y = (yOff - 0.5) * (fontSize + yPad);
+      context.drawImage(this.fillImageTarget, x, y, fontSize, fontSize);
+      Advance();
+    }
 
     const today = new Date;
     const day = String(today.getDate()).padStart(2, "0");

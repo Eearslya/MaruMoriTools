@@ -2,6 +2,7 @@
   .card-title.self-center.text-3xl.py-2= t("static.wallpaper.title")
   .card-body.flex.flex-col.items-center{data: { controller: "wallpaper" }}
     .flex.flex-row.flex-wrap.gap-4
+      = image_tag "mm_logo_bw.svg", class: "hidden", data: { wallpaper_target: "fillImage" }
       %fieldset.fieldset.border-gray-600.rounded-box.w-xs.border.p-4.self-start
         %legend.fieldset-legend= t("static.wallpaper.api_key.title")
         %input.input{type: "text", placeholder: t("static.wallpaper.api_key.placeholder"), data: { action: "input->wallpaper#updateApiKey", wallpaper_target: "apiKey" }}
