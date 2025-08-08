@@ -44,7 +44,7 @@ export default class extends Controller {
   }
 
   fontSize() {
-    const count = this.kanjiArray.length + 4;
+    const count = this.kanjiArray.length + 5;
     const aspect = this.width / this.height;
     const i = Math.ceil(Math.sqrt(count * aspect));
     return Math.floor(i / aspect) * i < count ? this.height / Math.ceil(i / aspect) : this.width / i;
@@ -121,13 +121,16 @@ export default class extends Controller {
 
     const paths = this.fillImageTarget.querySelectorAll("path");
     paths.forEach((p) => p.fill = this.levelColors[0]);
-    const gap = gridSize - this.kanjiArray.length - 4;
+    const gap = gridSize - this.kanjiArray.length - 6;
     for (var i = 0; i <= gap; ++i) {
       const x = (xOff - 0.5) * (fontSize + xPad);
       const y = (yOff - 0.5) * (fontSize + yPad);
       context.drawImage(this.fillImageTarget, x, y, fontSize, fontSize);
       Advance();
     }
+
+    Draw("丸");
+    Draw("森");
 
     const today = new Date;
     const day = String(today.getDate()).padStart(2, "0");
