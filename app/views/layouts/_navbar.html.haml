@@ -1,6 +1,8 @@
 .navbar.bg-base-200.px-2.gap-2.border-b.border-base-300.lg:pl-0
-  .flex-1
+  .flex-none
     = link_to t("app_name"), root_path, class: "btn btn-ghost text-xl"
+  .flex-1.flex.flex-row
+    = link_to t("nav.wallpaper"), wallpaper_path, class: "btn btn-ghost"
   .flex-none
     = link_to "https://github.com/Eearslya/MaruMoriTools", class: "btn btn-square btn-ghost", target: "_blank" do
       %svg{height: 32, width: 32, viewBox: "0 0 24 24"}

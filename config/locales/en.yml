@@ -1,5 +1,7 @@
 en:
   app_name: "MaruMori Tools"
+  nav:
+    wallpaper: "Kanji Wallpaper"
   static:
     wallpaper:
       api_key:
