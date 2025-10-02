@@ -41,8 +41,7 @@
               %label.input
                 %span.label{class: "w-[24ch]"}= t("static.wallpaper.settings.colors.level", level: i + 1)
                 %input{type: "color", data: { action: "change->wallpaper#update", wallpaper_target: "levelColor" }}
-            
-
+        %button.btn.btn-outline.btn-error{data: { action: "wallpaper#resetOptions" }}= t("static.wallpaper.settings.reset")
     .relative.p-4
       %canvas{class: "max-w-full xl:max-w-4xl", width: 256, height: 256, data: { wallpaper_target: "canvas" }}
     %a.btn.btn-outline.btn-success{data: { wallpaper_target: "save" }, download: true}= t("static.wallpaper.save")

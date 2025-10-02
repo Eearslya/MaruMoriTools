@@ -18,6 +18,7 @@ en:
           unknown: "Unknown"
         fontfamily: "Font Family"
         height: "Height"
+        reset: "Reset to Defaults"
         sortby:
           col: "Columns"
           label: "Sort By"
