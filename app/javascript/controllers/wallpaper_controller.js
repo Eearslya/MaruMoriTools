@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["canvas", "save", "apiKey", "load", "width", "height", "spacing", "levelColor", "background", "fillImage", "fontFamily"];
+  static targets = ["canvas", "save", "apiKey", "load", "width", "height", "spacing", "levelColor", "background", "fillImage", "fontFamily", "sortBy"];
 
   backgroundColor = "#000000";
   height = 256;
@@ -21,6 +21,7 @@ export default class extends Controller {
     "#66a9e8",
     "#b0a5f2",
   ];
+  sortBy = "col";
   spacing = 3;
   width = 256;
 
@@ -35,6 +36,7 @@ export default class extends Controller {
     this.heightTarget.value = this.height;
     this.spacingTarget.value = this.spacing;
     this.fontFamilyTarget.value = this.fontFamily;
+    this.sortByTarget.value = this.sortBy;
 
     for (var i = 0; i < this.levelColors.length; ++i) {
       this.levelColorTargets[i].value = this.levelColors[i];
@@ -105,12 +107,22 @@ export default class extends Controller {
 
     let xOff = 0.5;
     let yOff = 0.5;
+    const sortBy = this.sortBy;
     const Advance = function() {
-      if (yOff >= rows - 1) {
-        xOff += 1;
-        yOff = 0.5;
+      if (sortBy == "row") {
+        if (xOff >= columns - 1) {
+          yOff += 1;
+          xOff = 0.5;
+        } else {
+          xOff += 1;
+        }
       } else {
-        yOff += 1;
+        if (yOff >= rows - 1) {
+          xOff += 1;
+          yOff = 0.5;
+        } else {
+          yOff += 1;
+        }
       }
     };
     const Draw = function(text) {
@@ -166,6 +178,7 @@ export default class extends Controller {
     this.height = this.heightTarget.value;
     this.spacing = this.spacingTarget.value;
     this.fontFamily = this.fontFamilyTarget.value.trim();
+    this.sortBy = this.sortByTarget.value;
 
     for (var i = 0; i < this.levelColors.length; ++i) {
       this.levelColors[i] = this.levelColorTargets[i].value;

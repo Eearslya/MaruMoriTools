@@ -19,6 +19,11 @@
         %label.input
           %span.label= t("static.wallpaper.settings.spacing")
           %input{type: "number", data: { action: "input->wallpaper#update", wallpaper_target: "spacing" }}
+        %label.select
+          %span.label= t("static.wallpaper.settings.sortby.label")
+          %select{data: { action: "change->wallpaper#update", wallpaper_target: "sortBy" }}
+            %option{value: "col"}= t("static.wallpaper.settings.sortby.col")
+            %option{value: "row"}= t("static.wallpaper.settings.sortby.row")
         %label.input
           %span.label= t("static.wallpaper.settings.fontfamily")
           %input{type: "text", data: { action: "input->wallpaper#update", wallpaper_target: "fontFamily" }, placeholder: "Default"}

@@ -18,6 +18,10 @@ en:
           unknown: "Unknown"
         fontfamily: "Font Family"
         height: "Height"
+        sortby:
+          col: "Columns"
+          label: "Sort By"
+          row: "Rows"
         spacing: "Kanji Spacing"
         title: "Settings"
         width: "Width"
