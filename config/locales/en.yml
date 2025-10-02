@@ -16,6 +16,7 @@ en:
           level: "Level %{level}"
           title: "Colors..."
           unknown: "Unknown"
+        fontfamily: "Font Family"
         height: "Height"
         spacing: "Kanji Spacing"
         title: "Settings"

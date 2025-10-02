@@ -19,6 +19,9 @@
         %label.input
           %span.label= t("static.wallpaper.settings.spacing")
           %input{type: "number", data: { action: "input->wallpaper#update", wallpaper_target: "spacing" }}
+        %label.input
+          %span.label= t("static.wallpaper.settings.fontfamily")
+          %input{type: "text", data: { action: "input->wallpaper#update", wallpaper_target: "fontFamily" }, placeholder: "Default"}
         .collapse.border.border-gray-600
           %input{type: "checkbox"}/
           .collapse-title.text-lg.font-semibold= t("static.wallpaper.settings.colors.title")
